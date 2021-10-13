@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'tf_pub'
+package_name = 'odom_tf_pub'
 
 setup(
     name=package_name,
@@ -23,7 +23,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-                  'tf_pub = tf_pub.tf_pub_node:main',
+                  'odom_tf_pub = odom_tf_pub.odom_tf_pub_node:main',
         ],
     },
 )
