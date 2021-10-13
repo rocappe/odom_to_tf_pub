@@ -18,7 +18,7 @@ class TfPublisher(Node):
 						TFMessage,
 						'/tf',
 						self.qos)
-		self.declare_parameter('select_t265_odom')
+		self.declare_parameter('select_t265_odom', False)
 		
 		self.selector()
 		
