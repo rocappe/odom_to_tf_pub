@@ -9,7 +9,7 @@
 # Title
 
 ## Description of the project
-...
+Ros2 foxy node that subscribes either to the realsense T265 odometry topic or the ZED2 one and publishes the corresponding transformation.
 
 ## Installation procedure
 ...
