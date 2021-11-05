@@ -14,7 +14,7 @@ def generate_launch_description():
 		'use_zed2',
 		default_value='False',
 		description='')
-  declare_two_cameras_argument = DeclareLaunchArgument(
+	declare_two_cameras_argument = DeclareLaunchArgument(
 		'two_cameras',
 		default_value='True',
 		description='')
@@ -44,18 +44,18 @@ def generate_launch_description():
 		package='odom_tf_pub',
 		executable='odom_tf_pub',
 		parameters=[{'select_t265_odom': LaunchConfiguration("use_t265")}],
-    condition=UnlessCondition(LaunchConfiguration("two_cameras")),
+		condition=UnlessCondition(LaunchConfiguration("two_cameras")),
 		output='screen')
   
-  tf_pub_node_two = Node(
+	tf_pub_node_two = Node(
 		package='odom_tf_pub',
 		executable='odom_tf_pub',
 		parameters=[{'select_t265_odom': LaunchConfiguration("use_t265")}],
-    remappings=[("/zed2/zed_node/odom", "/zed2_l/zed_node/odom")],
-    condition=IfCondition(LaunchConfiguration("two_cameras")),
+    	remappings=[("/zed2/zed_node/odom", "/zed2_l/zed_node/odom")],
+    	condition=IfCondition(LaunchConfiguration("two_cameras")),
 		output='screen')
   
-  zed2_r_branch_node = Node(
+	zed2_r_branch_node = Node(
 		package='tf2_ros',
 		executable = 'static_transform_publisher',
 		arguments = ["0", "0.20", "0", "0", "0", "0", "zed2_l_base_link", "zed2_r_base_link"],
@@ -68,5 +68,5 @@ def generate_launch_description():
 		zed2_branch_node,
 		zed2_root_node,
 		tf_pub_node,
-    tf_pub_node_two
+		tf_pub_node_two
 		])
