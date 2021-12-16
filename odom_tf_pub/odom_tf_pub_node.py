@@ -40,6 +40,7 @@ class TfPublisher(Node):
 
 	def odom_callback(self, msg):
 		# Publish TF data
+		#print("odom callback")
 		tf_msg = TransformStamped()
 		#tf_msg.header.stamp = Node.get_clock(self).now().to_msg()
 		tf_msg.header.stamp = msg.header.stamp

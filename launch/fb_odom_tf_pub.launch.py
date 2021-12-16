@@ -8,11 +8,11 @@ def generate_launch_description():
 
 	declare_use_t265_argument = DeclareLaunchArgument(
 		'use_t265',
-		default_value='True',
+		default_value='False',
 		description='')
 	declare_use_zed2_argument = DeclareLaunchArgument(
 		'use_zed2',
-		default_value='False',
+		default_value='True',
 		description='')
 	declare_two_cameras_argument = DeclareLaunchArgument(
 		'two_cameras',
@@ -21,24 +21,24 @@ def generate_launch_description():
 	
 	two_cameras = LaunchConfiguration('two_cameras')
 	
-	t265_root_node = Node(
-		package='tf2_ros',
-		executable = 'static_transform_publisher',
-		arguments = ["-0.08", "0", "-0.115", "0", "0", "0", "camera_pose", "base_footprint"],
-		condition=IfCondition(LaunchConfiguration("use_t265")),
-		output='screen')
+	 #t265_root_node = Node(
+	#	package='tf2_ros',
+	#	executable = 'static_transform_publisher',
+	#	arguments = ["-0.08", "0", "-0.115", "0", "0", "0", "camera_pose", "base_footprint"],
+	#	condition=IfCondition(LaunchConfiguration("use_t265")),
+	#	output='screen')
 	
-	zed2_branch_node = Node(
-		package='tf2_ros',
-		executable = 'static_transform_publisher',
-		arguments = ["0.022", "0.094", "0.147", "0.6161", "0", "0", "base_footprint", "zed2_l_base_link"],
-		condition=IfCondition(LaunchConfiguration("use_t265")),
-		output='screen')
+	#zed2_branch_node = Node(
+	#	package='tf2_ros',
+	#	executable = 'static_transform_publisher',
+	#	arguments = ["0.022", "0.094", "0.147", "0.6161", "0", "0", "base_footprint", "zed2_r_base_link"],
+	#	condition=IfCondition(LaunchConfiguration("use_t265")),
+	#	output='screen')
 	
 	zed2_root_node = Node(
 		package='tf2_ros',
 		executable = 'static_transform_publisher',
-		arguments = ["-0.022", "-0.094", "-0.147", "-0.6161", "0", "0", "zed2_l_base_link", "base_footprint"],
+		arguments = ["0.056", "0", "-0.147", "0", "0", "0", "zed2_l_base_link", "base_footprint"],
 		condition=IfCondition(LaunchConfiguration("use_zed2")),
 		output='screen')
 	
@@ -61,15 +61,15 @@ def generate_launch_description():
 	zed2_r_branch_node = Node(
 		package='tf2_ros',
 		executable = 'static_transform_publisher',
-		arguments = ["0.022", "-0.094", "0.147", "-0.6615", "0", "0", "base_footprint", "zed2_r_base_link"],
+		arguments = ["-0.180", "0", "0.147", "1.5708", "0", "0", "base_footprint", "zed2_r_base_link"],
 		output='screen')
 	
 	return LaunchDescription([
 		declare_use_t265_argument,
 		declare_use_zed2_argument,
 		declare_two_cameras_argument,
-		t265_root_node,
-		zed2_branch_node,
+		#t265_root_node,
+		#zed2_branch_node,
 		zed2_root_node,
 		zed2_r_branch_node,
 		tf_pub_node,
